@@ -37,4 +37,10 @@ export class TareasService {
     }
 }
 
+borrarLista(lista: Lista) {
+  this.listas = this.listas.filter( res => res.id !== lista.id
+  );
+  this.guardarStorage();
+}
+
 }

@@ -1,6 +1,6 @@
+import { TareasService } from './../../servicios/tareas.service';
 import { ListasItem } from './../../models/ListasItem.model';
 import { Lista } from './../../models/Lista.model';
-import { TareasService } from 'src/app/servicios/tareas.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -33,7 +33,25 @@ export class AgregarPage implements OnInit {
     this.lista.items.push( nuevoItem );
     this.nombreItem = '';
     this.tareasService.guardarStorage();
+  }
 
+  cambioCheck( item: ListasItem ) {
+
+    const pendientes = this.lista.items.filter( itemData => !itemData.completado).length;
+    if (pendientes === 0) {
+      this.lista.fechaFinalizacion = new Date();
+      this.lista.completada = true;
+    } else {
+      this.lista.fechaFinalizacion = null;
+      this.lista.completada = false;
+    }
+    this.tareasService.guardarStorage();
+    console.log(this.tareasService.listas);
+  }
+
+  borrar(item: number) {
+    this.lista.items.splice( item, 1);
+    this.tareasService.guardarStorage();
   }
 
 }

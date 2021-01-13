@@ -1,3 +1,4 @@
+import { Lista } from './../../models/Lista.model';
 import { TareasService } from './../../servicios/tareas.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -20,8 +21,6 @@ export class Tab1Page {
   }
 
   async agregarLista() {
-
-    
 
     const alert = this.alertController.create({
       inputs: [
@@ -54,6 +53,5 @@ export class Tab1Page {
     });
     (await alert).present();
   }
-
 
 }
